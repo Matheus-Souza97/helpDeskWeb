@@ -1,5 +1,5 @@
 import { Input } from "../components/Input"
-import { Button } from "../components/Button"
+import { ButtonBasic } from "../components/Buttons/ButtonBasic"
 
 export function SignIn(){
   return(
@@ -11,7 +11,7 @@ export function SignIn(){
         <Input name="email" required legend="E-mail" type="email" placeholder="exemplo@email.com"/>
         <Input name="password" required legend="Senha" type="password" placeholder="Digite sua senha"/>
         <div className="mt-6">
-          <Button type="submit">Entrar</Button>
+          <ButtonBasic type="submit">Entrar</ButtonBasic>
         </div>
       </form>
     </div>
