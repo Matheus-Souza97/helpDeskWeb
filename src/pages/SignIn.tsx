@@ -20,7 +20,7 @@ export function SignIn(){
       <h3 className="text-md font-semibold text-gray-200">Ainda não tem uma conta?</h3>
       <p className="text-xs text-gray-300 mb-6">Cadastre agora mesmo</p>
 
-      <a href="" className=" flex w-86 h-10 items-center justify-center bg-gray-500 text-sm font-semibold text-gray-200 rounded-[5px]">Criar conta</a>
+      <a href="/signup" className=" flex w-86 h-10 items-center justify-center bg-gray-500 text-sm font-semibold text-gray-200 rounded-[5px]">Criar conta</a>
       
     </div>
 
