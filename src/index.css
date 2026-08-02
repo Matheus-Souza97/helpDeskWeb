@@ -2,7 +2,15 @@
 
 
 @theme{
-  
+
+  --color-back-feedback-open: #CC3D6A33;
+  --color-back-feedback-progress: #355EC533;
+  --color-back-feedback-done: #508B2633;
+
+  --color-feedback-done: #508B26;
+  --color-feedback-progress: #355EC5;
+  --color-feedback-danger: #D03E3E;
+  --color-feedback-open: #CC3D6A;
   --color-blue-dark: #2E3DA3;
   --color-blue-base: #5165E1;
   --color-blue-light: #8996EB;
