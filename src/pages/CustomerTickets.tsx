@@ -54,7 +54,7 @@ export function CustomerTickets(){
             <p className="w-52 pl-2">Instalação de Rede</p>
             <p className="w-32 pl-2">R$ 180,00</p>
             <p className="w-40 pl-2 text-lg">Carlos Silva</p>
-            <div className="w-50 pl-2">{selectStatus("open")}</div>
+            <div className="w-50 pl-2">{selectStatus("closed")}</div>
             <div className=" flex w-7 h-7 items-center justify-center bg-gray-500 border-none rounded-[5px]"><a href="/"><img src={viewSvg} alt="view" /></a></div>
           </li>
         </ul>

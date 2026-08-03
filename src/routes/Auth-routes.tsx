@@ -5,6 +5,7 @@ import { SignUp } from "../pages/SignUp"
 import { NotFound } from "../pages/NotFounf"
 import { CustomerLayout } from "../components/CustomerLayout"
 import { CustomerTickets } from "../pages/CustomerTickets"
+import { CustomerNewTicket } from "../pages/CustomerNewTicket"
 
 export function AuthRoutes(){
   return(
@@ -15,7 +16,8 @@ export function AuthRoutes(){
       </Route>
 
       <Route path="/customer" element={<CustomerLayout/>}>
-        <Route index element={<CustomerTickets/>}></Route>
+        <Route index element={<CustomerTickets/>}/>
+        <Route path="/customer/new" element={<CustomerNewTicket/>}/>
       </Route>
 
       <Route path="*" element={<NotFound/>}/>
