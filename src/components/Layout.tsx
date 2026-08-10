@@ -1,12 +1,11 @@
 import { Outlet, useNavigate, useLocation } from "react-router"
 import logo2 from "../assets/Logo2.png"
-import { ButtonNave } from "./Buttons/ButtonNave"
+import { ButtonNave } from "../components/Buttons/ButtonNave"
 import clipboard from "../assets/clipboard.svg"
-import icon_sun from "../assets/icon_sum.svg"
 import { useAuth } from "../Hooks/useAuth"
-import { ButtonOptions } from "./Buttons/ButtonOptions"
+import { ButtonOptions } from "../components/Buttons/ButtonOptions"
 
-export function CustomerLayout(){
+export function Layout(){
 
   const location = useLocation()
 
@@ -31,15 +30,8 @@ export function CustomerLayout(){
             <div className="py-5 px-4">
               <div>
 
-                <ButtonNave selected={location.pathname === "/customer"} onClick={() => {navigate("/customer")}}><img src={clipboard} alt="icone de lista"/>
+                <ButtonNave selected={location.pathname === "/support"} onClick={() => {navigate("/customer")}}><img src={clipboard} alt="icone de lista"/>
                 <h2>Meus chamados</h2></ButtonNave>
-
-              </div>
-
-              <div>
-
-                <ButtonNave selected={location.pathname === "/customer/new"} onClick={() => {navigate("/customer/new")} } ><img src={icon_sun} alt="icone de criar" />
-                <h2>Criar chamado</h2></ButtonNave>
 
               </div>
             </div>
