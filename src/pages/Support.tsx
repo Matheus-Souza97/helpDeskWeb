@@ -7,6 +7,7 @@ import editarSvg from "../assets/editar.svg"
 
 
 import { useEffect, useState } from "react"
+import { Link } from "react-router"
 import { api } from "../services/api"
 import { useAuth } from "../Hooks/useAuth"
 
@@ -32,10 +33,6 @@ export function Support(){
 
   const [ticket, setTicket] = useState<Ticket[]>([])
   
-  console.log("Support renderizou")
-  console.log("Tickets:", ticket)
-  
-
   useEffect(() => {
     async function loadTickets(){
       const response = await api.get<{result: Ticket[]}>("/support")
@@ -94,9 +91,9 @@ export function Support(){
                   <p>{ticket.id}</p>
                 </div>
                 <div onClick={() => selectImage(ticket.status)} className="flex gap-1">
-                  <div className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
+                  <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
-                  </div>
+                  </Link>
                   <div className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200">
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Encerrar</p>
@@ -147,9 +144,9 @@ export function Support(){
                   <p>{ticket.id}</p>
                 </div>
                 <div onClick={() => selectImage(ticket.status)} className="flex gap-1">
-                  <div className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
+                  <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
-                  </div>
+                  </Link>
                   <div className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200">
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Iniciar</p>
@@ -200,9 +197,9 @@ export function Support(){
                   <p>{ticket.id}</p>
                 </div>
                 <div onClick={() => selectImage(ticket.status)} className="flex gap-1">
-                  <div className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
+                  <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
-                  </div>
+                  </Link>
                 </div>
               </div>
 
