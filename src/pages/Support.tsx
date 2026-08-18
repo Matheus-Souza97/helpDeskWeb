@@ -7,9 +7,12 @@ import editarSvg from "../assets/editar.svg"
 
 
 import { useEffect, useState } from "react"
-import { Link } from "react-router"
+import { data, Link } from "react-router"
 import { api } from "../services/api"
 import { useAuth } from "../Hooks/useAuth"
+import { da } from "zod/locales"
+import { string } from "zod"
+
 
 type Ticket = {
   id: string
@@ -69,6 +72,28 @@ export function Support(){
 
     return initials
   }
+
+  async function updateStatus(ticketId:string, status:string){
+
+    let newStatus: string
+
+    if(status === "in_progress"){
+      newStatus = "closed"
+      
+    } else if(status === "open"){
+      newStatus = "in_progress"
+      
+    } else {
+      newStatus = "closed"
+      
+    }
+
+    await api.put(`/support/ticketStatus/${ticketId}`, {status: newStatus})
+    
+    setTicket((prev) => 
+      prev.map((item) => item.id === ticketId ? {...item, status: newStatus} : item)
+    )
+  }
   
   return(
     <div>
@@ -83,7 +108,7 @@ export function Support(){
           <p className="px-1.5 text-feedback-progress">Em atendimento</p>
         </div>
 
-        <div className="flex w-full mb-6">
+        <div className="flex gap-4 w-full mb-6">
           {inProgressTicket.map((ticket) => (
             <div className="w-86.5 p-5 border border-gray-500 rounded-[10px]" key={ticket.id}>
               <div className="flex justify-between mb-1">
@@ -94,10 +119,10 @@ export function Support(){
                   <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
                   </Link>
-                  <div className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200">
+                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200" onClick={() => updateStatus(ticket.id, ticket.status)}>
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Encerrar</p>
-                  </div>
+                  </button>
                 </div>
               </div>
 
@@ -147,10 +172,10 @@ export function Support(){
                   <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
                   </Link>
-                  <div className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200">
+                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200" onClick={() => updateStatus(ticket.id, ticket.status)}>
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Iniciar</p>
-                  </div>
+                  </button>
                 </div>
               </div>
 
@@ -189,7 +214,7 @@ export function Support(){
           <p className="px-1.5 text-feedback-done">Encerrado</p>
         </div>
 
-        <div className="w-full mb-6">
+        <div className=" flex gap-4 w-full mb-6">
           {closedTickets.map((ticket) => (
             <div key={ticket.id} className="w-86.5 p-5 border border-gray-500 rounded-[10px]">
               <div className="flex justify-between mb-1">
