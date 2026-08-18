@@ -108,7 +108,7 @@ export function Support(){
 
               <div className="flex justify-between mb-4">
                 <p>{formatData(ticket.createdAt)}</p>
-                <p>R${ticket.initialPrice},00</p>
+                <p>R${ticket.finalPrice},00</p>
               </div>
 
               <div className="border-b border-gray-500 mb-4"></div>
@@ -161,7 +161,7 @@ export function Support(){
 
               <div className="flex justify-between mb-4">
                 <p>{formatData(ticket.createdAt)}</p>
-                <p>R${ticket.initialPrice},00</p>
+                <p>R${ticket.finalPrice},00</p>
               </div>
 
               <div className="border-b border-gray-500 mb-4"></div>
@@ -210,7 +210,7 @@ export function Support(){
 
               <div className="flex justify-between mb-4">
                 <p>{formatData(ticket.createdAt)}</p>
-                <p>R${ticket.initialPrice},00</p>
+                <p>R${ticket.finalPrice},00</p>
               </div>
 
               <div className="border-b border-gray-500 mb-4"></div>

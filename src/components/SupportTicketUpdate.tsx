@@ -111,6 +111,37 @@ export function SupportTicketUpdate(){
     return supportInitials
   }
 
+  async function removeAdditionalService(serviceId:string){
+    if(!ticket?.id) return
+    try {
+      await api.put(`support/ticket/${ticket?.id}/${serviceId}`)
+      
+      setTicket((prev) => {
+        if(!prev) return prev
+
+        const service = prev.services.find((service) => service.id === serviceId)
+
+        if(!service) return prev
+
+        const serviceAmount = Number(service.amount)
+
+        const totalAdditionals = Number(prev.totalAdditionals) - serviceAmount
+
+        const total = Number(prev.ticketAssignment.total) - serviceAmount
+
+        return {
+          ...prev, services: prev.services.filter((service) => service.id !== serviceId),
+          totalAdditionals: String(totalAdditionals),
+          ticketAssignment: {...prev.ticketAssignment,
+            total: String(total)
+          }
+        }
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return(
     <div className="relative">
        <Link to={"/support"}>
@@ -168,7 +199,7 @@ export function SupportTicketUpdate(){
           <div className="flex justify-between text-gray-400 m-6">
             <h2>Serviços adicionais</h2>
             <div className="flex items-center justify-center w-7 h-7 rounded-[5px] bg-gray-200">
-              <ButtonAddService selected={false} type="button" className="flex justify-center"><img src={iconSum} alt="" /></ButtonAddService>
+              <ButtonAddService status={ticket?.status ?? ""} selected={false} type="button" className="flex justify-center"><img src={iconSum} alt="" /></ButtonAddService>
             </div>
           </div>
           <div>
@@ -177,9 +208,9 @@ export function SupportTicketUpdate(){
                 <p>{item.name}</p>
                 <div className="flex items-center gap-6">
                   <p>R${item.amount},00</p>
-                  <div className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
+                  <button className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500" onClick={() => removeAdditionalService(item.id)}>
                     <img src={lixeiraSvg} alt="icone deletar" className="w-3.5 h-3.5"/>
-                  </div>
+                  </button>
                 </div>
               </div>
             ))}
