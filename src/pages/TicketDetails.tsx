@@ -112,6 +112,7 @@ export function TicketDetails(){
       </Link>
       
       <div className=" mx-20 mt-1"><h1 className="text-2xl font-semibold text-blue-dark">Chamado detalhado</h1></div>
+      
 
       <div className="w-140 ml-20 mt-6 border border-gray-500 rounded-[10px]">
 

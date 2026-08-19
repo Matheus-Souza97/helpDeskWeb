@@ -4,12 +4,18 @@ import closedSvg from "../assets/closed.svg"
 import openSvg from "../assets/open.svg"
 import iconSum from "../assets/icon_sum.svg"
 import lixeiraSvg from "../assets/lixeira.svg"
+import inprogressBrancoSvg from "../assets/in-progres-branco.svg"
+import closedPretoSvg from "../assets/closed-preto.svg"
+import inprogressPretoSvg from "../assets/in-progres-preto.svg"
+import closedBrancoSvg from "../assets/closed-branco.svg"
 
 import { Link, useParams } from "react-router"
 import { useState, useEffect } from "react"
 import { api } from "../services/api"
 import { useAuth } from "../Hooks/useAuth"
 import { ButtonAddService } from "./Buttons/ButtonAddService"
+import { ButtonSetStatus } from "./Buttons/ButtonSetStatus"
+
 
 
 type Ticket = {
@@ -44,6 +50,8 @@ export function SupportTicketUpdate(){
   const session = useAuth()
   const { id } = useParams()
   const [ticket, setTicket] = useState<Ticket>()
+  const [encerrar, setEncerrar] = useState(false)
+  const [iniciar, setIniciar] = useState(false)
   
 
   useEffect(() => {
@@ -142,6 +150,26 @@ export function SupportTicketUpdate(){
     }
   }
 
+  
+  useEffect(() => {
+    if(ticket?.status === "open"){
+      setEncerrar(true)
+      setIniciar(false)
+    }
+    if(ticket?.status === "in_progress"){
+      setEncerrar(false)
+      setIniciar(true)
+    }
+    if(ticket?.status === "closed"){
+      setEncerrar(true)
+      setIniciar(true)
+    }
+
+  },[ticket?.status])
+
+
+
+
   return(
     <div className="relative">
        <Link to={"/support"}>
@@ -151,7 +179,23 @@ export function SupportTicketUpdate(){
         </div>
       </Link>
 
-      <div className=" mx-20 mt-1"><h1 className="text-2xl font-semibold text-blue-dark">Chamado detalhado</h1></div>
+      <div className="flex items-center justify-between">
+        <div className=" mx-20 mt-1"><h1 className="text-2xl font-semibold text-blue-dark">Chamado detalhado</h1></div>
+
+        <div className="flex gap-2 mr-141">
+
+          <ButtonSetStatus disabled={encerrar} status={ticket?.status} type="button"  image={encerrar? closedPretoSvg : closedBrancoSvg} className="font-semibold">
+            {"Encerrar"}
+          </ButtonSetStatus>
+
+          <ButtonSetStatus disabled={iniciar} status={ticket?.status} type="button" image={iniciar ? inprogressPretoSvg : inprogressBrancoSvg} className="font-semibold">
+            {"Iniciar atendimento"}
+          </ButtonSetStatus>
+
+        </div>
+
+      </div>
+
       <div>
 
         <div className="w-140 ml-20 mt-6 border border-gray-500 rounded-[10px]">
@@ -199,7 +243,7 @@ export function SupportTicketUpdate(){
           <div className="flex justify-between text-gray-400 m-6">
             <h2>Serviços adicionais</h2>
             <div className="flex items-center justify-center w-7 h-7 rounded-[5px] bg-gray-200">
-              <ButtonAddService status={ticket?.status ?? ""} selected={false} type="button" className="flex justify-center"><img src={iconSum} alt="" /></ButtonAddService>
+              <ButtonAddService status={ticket?.status ?? ""} selected={false} type="button" className="flex justify-center cursor-pointer"><img src={iconSum} alt="" /></ButtonAddService>
             </div>
           </div>
           <div>
@@ -208,7 +252,7 @@ export function SupportTicketUpdate(){
                 <p>{item.name}</p>
                 <div className="flex items-center gap-6">
                   <p>R${item.amount},00</p>
-                  <button className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500" onClick={() => removeAdditionalService(item.id)}>
+                  <button className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500 cursor-pointer" onClick={() => removeAdditionalService(item.id)}>
                     <img src={lixeiraSvg} alt="icone deletar" className="w-3.5 h-3.5"/>
                   </button>
                 </div>
