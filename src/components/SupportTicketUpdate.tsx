@@ -15,6 +15,7 @@ import { api } from "../services/api"
 import { useAuth } from "../Hooks/useAuth"
 import { ButtonAddService } from "./Buttons/ButtonAddService"
 import { ButtonSetStatus } from "./Buttons/ButtonSetStatus"
+import { string } from "zod"
 
 
 
@@ -69,7 +70,7 @@ export function SupportTicketUpdate(){
       }
     }
     ticket()
-  },[id])
+  },[id,ticket?.status])
 
   function selectStatus(status:string){
 
@@ -167,6 +168,32 @@ export function SupportTicketUpdate(){
 
   },[ticket?.status])
 
+ 
+    async function updateStatus(){
+      if(!ticket?.id || !ticket.status) return
+
+      function selectUpdateState(status:string){
+        if(status === "open"){
+          return "in_progress"
+          
+        } else{ 
+          return "closed"
+        }
+      }
+      
+      const status = selectUpdateState(ticket.status)
+    
+      const data = {status: status}
+
+      try {
+        const response = await api.put(`/support/ticketStatus/${ticket?.id}`, data)
+        setTicket({...ticket, status:response.data})
+        
+      } catch (error) {
+        console.log(error)
+      }
+
+    }
 
 
 
@@ -184,11 +211,11 @@ export function SupportTicketUpdate(){
 
         <div className="flex gap-2 mr-141">
 
-          <ButtonSetStatus disabled={encerrar} status={ticket?.status} type="button"  image={encerrar? closedPretoSvg : closedBrancoSvg} className="font-semibold">
+          <ButtonSetStatus disabled={encerrar} status={ticket?.status} type="button"  image={encerrar? closedPretoSvg : closedBrancoSvg} className="font-semibold" onClick={() => updateStatus()}>
             {"Encerrar"}
           </ButtonSetStatus>
 
-          <ButtonSetStatus disabled={iniciar} status={ticket?.status} type="button" image={iniciar ? inprogressPretoSvg : inprogressBrancoSvg} className="font-semibold">
+          <ButtonSetStatus disabled={iniciar} status={ticket?.status} type="button" image={iniciar ? inprogressPretoSvg : inprogressBrancoSvg} className="font-semibold" onClick={() => updateStatus()}>
             {"Iniciar atendimento"}
           </ButtonSetStatus>
 

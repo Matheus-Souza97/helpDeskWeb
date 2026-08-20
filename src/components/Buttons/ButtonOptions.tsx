@@ -45,7 +45,7 @@ export function ButtonOptions({children, name, role, email, type = "submit", ...
   return(
 
     <div className="flex absolute bottom-0 ml-4 w-49 h-20 gap-3">
-      <button type={type} {...rest} className="flex gap-3" onClick={() => option()}>
+      <button type={type} {...rest} className="flex gap-3 cursor-pointer" onClick={() => option()}>
         <div className="flex w-8 h-8 justify-center items-center rounded-full bg-blue-dark text-gray-600">{userName(name).toUpperCase()}</div>
         <div>
           <h1 className="text-gray-600 text-lg">{select(role)}</h1>

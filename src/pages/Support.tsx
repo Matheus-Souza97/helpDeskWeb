@@ -119,7 +119,7 @@ export function Support(){
                   <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
                   </Link>
-                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200" onClick={() => updateStatus(ticket.id, ticket.status)}>
+                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200 cursor-pointer" onClick={() => updateStatus(ticket.id, ticket.status)}>
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Encerrar</p>
                   </button>
@@ -172,7 +172,7 @@ export function Support(){
                   <Link to={`/support/${ticket.id}`} className="flex justify-center items-center w-7 h-7 rounded-[5px] bg-gray-500">
                     <img src={editarSvg} alt="icone de editar" className="w-3.5 h-3.5"/>
                   </Link>
-                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200" onClick={() => updateStatus(ticket.id, ticket.status)}>
+                  <button className="flex items-center h-7 p-2 gap-2 rounded-[5px] bg-gray-200 cursor-pointer" onClick={() => updateStatus(ticket.id, ticket.status)}>
                     <img src={selectImage(ticket.status)} alt="icone de status" className="w-3.5 h-3.5"/>
                     <p className="text-gray-500">Iniciar</p>
                   </button>

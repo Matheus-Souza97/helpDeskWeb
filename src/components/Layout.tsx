@@ -30,7 +30,7 @@ export function Layout(){
             <div className="py-5 px-4">
               <div>
 
-                <ButtonNave selected={location.pathname === "/support"} onClick={() => {navigate("/customer")}}><img src={clipboard} alt="icone de lista"/>
+                <ButtonNave selected={location.pathname === "/support"} onClick={() => {navigate("/support")}}><img src={clipboard} alt="icone de lista"/>
                 <h2>Meus chamados</h2></ButtonNave>
 
               </div>

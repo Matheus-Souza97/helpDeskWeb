@@ -13,6 +13,7 @@ export function CustomerLayout(){
   const {session} = useAuth()
 
   const navigate = useNavigate()
+  
 
   return(
 
