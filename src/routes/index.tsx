@@ -4,12 +4,11 @@ import { CustomerRoutes } from "./Customer-routes";
 //import { Loading } from "../components/Loading";
 import { useAuth } from "../Hooks/useAuth";
 import { SupportRoutes } from "./Support-routes";
+import { AdminRoutes } from "./Admin-routes";
 
 export function Routes(){
 
   const {session} = useAuth()
-
-  console.log("SESSION NO ROUTES:", session)
 
   function Route(){
     switch(session?.user?.role){
@@ -17,7 +16,7 @@ export function Routes(){
         return <CustomerRoutes/>
 
       case "admin":
-        return
+        return <AdminRoutes/>
 
       case "support":
         return <SupportRoutes/>

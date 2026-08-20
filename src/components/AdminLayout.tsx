@@ -5,7 +5,11 @@ import clipboard from "../assets/clipboard.svg"
 import { useAuth } from "../Hooks/useAuth"
 import { ButtonOptions } from "../components/Buttons/ButtonOptions"
 
-export function Layout(){
+import tecnicosSvg from "../assets/tecnicos.svg"
+import clientesSvg from "../assets/clientes.svg"
+import servicosSvcg from "../assets/servicos.svg"
+
+export function AdminLayout(){
 
   const location = useLocation()
 
@@ -21,7 +25,7 @@ export function Layout(){
           <img src={logo2} alt="Logo" />
           <div>
             <h1 className="text-[20px] font-semibold text-gray-600">HelpDesk</h1>
-            <p className="uppercase text-xs text-blue-light font-semibold">técnico</p>
+            <p className="uppercase text-xs text-blue-light font-semibold">admin</p>
           </div>
         </div>
       <div>
@@ -30,8 +34,14 @@ export function Layout(){
             <div className="py-5 px-4">
               <div>
 
-                <ButtonNave selected={location.pathname === "/support"} onClick={() => {navigate("/support")}}><img src={clipboard} alt="icone de lista"/>
-                <h2>Meus chamados</h2></ButtonNave>
+                <ButtonNave selected={location.pathname === "/admin"} onClick={() => {navigate("/admin")}}><img src={clipboard} alt="icone de lista"/>
+                <h2>Chamados</h2></ButtonNave>
+                <ButtonNave selected={location.pathname === "/"} onClick={() => {navigate("/")}}><img src={tecnicosSvg} alt="icone de lista"/>
+                <h2>Técnicos</h2></ButtonNave>
+                <ButtonNave selected={location.pathname === "/"} onClick={() => {navigate("/")}}><img src={clientesSvg} alt="icone de lista"/>
+                <h2>Clientes</h2></ButtonNave>
+                <ButtonNave selected={location.pathname === "/"} onClick={() => {navigate("/")}}><img src={servicosSvcg} alt="icone de lista"/>
+                <h2>Serviços</h2></ButtonNave>
 
               </div>
             </div>
