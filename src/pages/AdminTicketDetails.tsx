@@ -6,16 +6,9 @@ import openSvg from "../assets/open.svg"
 import inProgresSvg from "../assets/in-progres.svg"
 import closedSvg from "../assets/closed.svg"
 
-export function TicketDetails(){
-
-  interface TicketResponse {
-    ticketUserVerify: Ticket,
-    services: []
-  }
-
-  interface Service {
-    name: string
-    amount: string
+export function AdminTicketDetails(){
+  type TicketResponse = {
+    result : Ticket
   }
 
   interface Ticket{
@@ -24,17 +17,17 @@ export function TicketDetails(){
     name: string
     description: string
     category: string
-    initialPrice: string
     createdAt: string
     updatedAt: string
-    ticketAssignment: {
-      additionalServices:[]
-      support: {
-        name: string
-        email:string
-      }
-      total:string
-    }
+    user: string
+    supportName: string
+    supportEmail: string
+    initialPrice: string
+    total:string
+    additionalServices:[{
+      name: string
+      amount: number
+    }]
   }
 
 
@@ -42,10 +35,9 @@ export function TicketDetails(){
 
 
   const [ticket, setTicket] = useState<Ticket>()
-  const [service, setService] = useState<Service[]>([])
 
   function supportName(){
-    const suport = ticket?.ticketAssignment.support.name
+    const suport = ticket?.supportName
 
     if(!suport) return ""
 
@@ -64,10 +56,10 @@ export function TicketDetails(){
 
     async function fetchTicket(){
       try {
-        const response = await api.get<TicketResponse>(`/customer/details/${id}`)
+        const response = await api.get<TicketResponse>(`/admin/ticket/${id}`)
 
-        setTicket(response.data.ticketUserVerify)
-        setService(response.data.services)
+        setTicket(response.data.result)
+  
         
         console.log(response.data)
       } catch (error) {
@@ -104,7 +96,7 @@ export function TicketDetails(){
 
   return(
     <div className="relative">
-      <Link to={"/customer"}>
+      <Link to={"/admin"}>
         <div className="flex mx-20 mt-14">
           <img src={returnSvg} alt="iconde de voltar" className="mr-2"/>
           <p>Voltar</p>
@@ -156,8 +148,8 @@ export function TicketDetails(){
         <div className="flex gap-2">
           <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-dark ml-6 text-gray-600"><h1>{supportName()}</h1></div>
           <div>
-            <h1>{ticket?.ticketAssignment.support.name}</h1>
-            <p>{ticket?.ticketAssignment.support.email}</p>
+            <h1>{ticket?.supportName}</h1>
+            <p>{ticket?.supportEmail}</p>
           </div>
         </div>
 
@@ -171,21 +163,21 @@ export function TicketDetails(){
 
         <div className="mt-4 mx-6">
           <h2 className="text-gray-400 mb-2">Adicionais</h2>
-
-          {service.map((addService) => (
-            <div key={addService.name} className="flex justify-between">
-              <p className="mb-1">{addService.name}</p>
-              <p>R${addService.amount},00</p>
+          {ticket?.additionalServices.map((item) => (
+            <div key={item.name} className="flex justify-between">
+              <p className="mb-1">{item.name}</p>
+              <p>{`R$${item.amount},00`}</p>
             </div>
-
           ))}
+
+          
         </div>
 
         <div className="w-full mt-4 border-b border-gray-500"></div>
 
         <div className="flex justify-between text-gray-200 mx-6 mt-4 mb-6 font-semibold text-lg">
           <h1>Total</h1>
-          <h1>R${ticket?.ticketAssignment.total},00</h1>
+          <h1>R${ticket?.total},00</h1>
         </div>
 
       </div>

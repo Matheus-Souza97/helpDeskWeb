@@ -10,7 +10,7 @@ export function AdminTickets(){
   const [ticket, setTicket] = useState<Ticket[]>([])
 
   type Result = {
-    results:[Ticket]
+    results: Ticket[]
   }
 
   type Ticket = {
@@ -40,7 +40,7 @@ export function AdminTickets(){
       console.log(response.data)
     }
     allTickets()
-  },ticket)
+  },[])
 
   function status(status:string){
     if(status === "open"){
@@ -103,7 +103,7 @@ export function AdminTickets(){
               <div className="relative flex w-60 text-base"><div className="absolute flex gap-2 items-center"><div className="flex justify-center items-center w-7 h-7 bg-blue-dark text-gray-600 rounded-full">{initials(item.ticketAssignment.support.name).toUpperCase()}</div><div>{item.ticketAssignment.support.name}</div></div></div>
               
               <div className="pl-2">{status(item.status)}</div>
-              <Link to={`/customer/details/32131531`} className="absolute right-15 flex w-9 h-9 items-center justify-center bg-gray-500 border-none rounded-[5px]"><img src={editarSvg} alt="view" className="w-5 h-5"/></Link>
+              <Link to={`/admin/ticket/${item.id}`} className="absolute right-15 flex w-9 h-9 items-center justify-center bg-gray-500 border-none rounded-[5px]"><img src={editarSvg} alt="view" className="w-5 h-5"/></Link>
             </li>
           ))
 

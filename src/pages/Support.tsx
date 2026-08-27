@@ -7,11 +7,9 @@ import editarSvg from "../assets/editar.svg"
 
 
 import { useEffect, useState } from "react"
-import { data, Link } from "react-router"
+import { Link } from "react-router"
 import { api } from "../services/api"
 import { useAuth } from "../Hooks/useAuth"
-import { da } from "zod/locales"
-import { string } from "zod"
 
 
 type Ticket = {

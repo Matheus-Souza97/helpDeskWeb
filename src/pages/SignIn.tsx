@@ -72,7 +72,7 @@ export function SignIn(){
         </p>
 
         <div className="mt-3">
-          <ButtonBasic type="submit" isLoading={isLoading}>Entrar</ButtonBasic>
+          <ButtonBasic type="submit" isLoading={isLoading} className="w-full bg-gray-200 text-gray-600">Entrar</ButtonBasic>
         </div>
       </form>
 

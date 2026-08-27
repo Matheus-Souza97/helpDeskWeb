@@ -78,7 +78,7 @@ export function AddService({onClose}: Props){
           <div className="border-b border-gray-500 mt-4"></div>
 
           <div className="mx-7 my-8">
-            <ButtonBasic type="submit">Salvar</ButtonBasic>
+            <ButtonBasic type="submit" className="w-full bg-gray-200 text-gray-600">Salvar</ButtonBasic>
           </div>
         </div>
       </form>

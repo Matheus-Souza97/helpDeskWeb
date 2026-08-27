@@ -12,7 +12,7 @@ export function SignUp(){
             <Input name="email" required legend="E-mail" type="email" placeholder="exemplo@email.com"/>
             <Input name="password" required legend="Senha" type="password" placeholder="Digite sua senha"/>
             <div className="mt-6">
-              <ButtonBasic type="submit">Cadastrar</ButtonBasic>
+              <ButtonBasic type="submit" className="w-full bg-gray-200 text-gray-600">Cadastrar</ButtonBasic>
             </div>
           </form>
         </div>

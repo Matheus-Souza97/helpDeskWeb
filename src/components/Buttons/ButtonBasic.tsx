@@ -4,6 +4,6 @@ type Props = React.ComponentProps<"button"> & {
 
 export function ButtonBasic({children, className, isLoading, type = "button", ...rest}: Props){
   return(
-    <button type={type} disabled={isLoading} {...rest} className="w-full h-10 bg-gray-200 text-gray-600 rounded-[5px] cursor-pointer">{children}</button>
+    <button type={type} disabled={isLoading} {...rest} className={` h-10 rounded-[5px] cursor-pointer ${className ?? " "}`}>{children}</button>
   )
 }

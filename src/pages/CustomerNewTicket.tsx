@@ -141,7 +141,7 @@ async function createTicket(){
           )}
 
 
-          <ButtonBasic onClick={createTicket}>Criar chamado</ButtonBasic>
+          <ButtonBasic onClick={createTicket} className="w-full bg-gray-200 text-gray-600">Criar chamado</ButtonBasic>
         </div>
 
         
