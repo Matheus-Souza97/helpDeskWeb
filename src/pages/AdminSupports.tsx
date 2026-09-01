@@ -69,9 +69,9 @@ export function AdminSupports(){
 
             <p className="border mr-73 border-gray-500 p-1.5 rounded-full text-gray-400 font-semibold ml-3">{`+${item.remainingHours}`}</p>
 
-            <div className="absolute right-20 flex items-center justify-center w-9 h-9 bg-gray-500 rounded-[10px]">
+            <Link to={`/admin/support/${item.id}`} className="absolute right-20 flex items-center justify-center w-9 h-9 bg-gray-500 rounded-[10px]">
               <img src={editarSvg} alt="icone de editar" className="w-5 h-5"/>
-            </div>
+            </Link>
 
           </div>
 

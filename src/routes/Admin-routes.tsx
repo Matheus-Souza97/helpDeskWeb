@@ -5,6 +5,7 @@ import { AdminTicketDetails } from "../pages/AdminTicketDetails"
 import { AdminSupports } from "../pages/AdminSupports"
 import { NewSupport } from "../pages/NewSupport"
 import { Confirm } from "../components/Confirm"
+import { AdminUpdateSupport } from "../pages/AdminUpdateSupport"
 export function AdminRoutes(){
   return(
     <Routes>
@@ -13,6 +14,7 @@ export function AdminRoutes(){
         <Route path="/admin/ticket/:id" element={<AdminTicketDetails/>}/>
         <Route path="/admin/supports" element={<AdminSupports/>}/>
         <Route path="/admin/supports/new" element={<NewSupport/>}/>
+        <Route path="/admin/support/:id" element={<AdminUpdateSupport/>}/>
         <Route path="/admin/confirm" element={<Confirm/>}/>
 
       </Route>
