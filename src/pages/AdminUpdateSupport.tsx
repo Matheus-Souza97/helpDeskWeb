@@ -5,9 +5,11 @@ import { Checkbox } from "../components/CheckBox"
 import { ButtonBasic } from "../components/Buttons/ButtonBasic"
 import { useEffect, useState } from "react"
 import { api } from "../services/api"
-import { email } from "zod"
+import { useNavigate } from "react-router"
 
 export function AdminUpdateSupport(){
+
+  const navigate = useNavigate()
 
   type Show = {
     support: Support
@@ -47,8 +49,14 @@ export function AdminUpdateSupport(){
       supportHours: support?.support.supportHours
     }
 
-    await api.put(`/admin/support/${id}`, data)
-    console.log(data)
+    const confirmed = confirm("Deseja salvar as alterações?")
+
+    if(!confirmed) return
+    
+    if(confirmed){
+      await api.put(`/admin/support/${id}`, data)
+      navigate("/admin/confirm")
+    }
   }
 
   function handleSupportHours(hour:string){
