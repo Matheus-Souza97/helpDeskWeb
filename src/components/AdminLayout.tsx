@@ -38,7 +38,7 @@ export function AdminLayout(){
                 <h2>Chamados</h2></ButtonNave>
                 <ButtonNave selected={location.pathname === "/admin/supports"} onClick={() => {navigate("/admin/supports")}}><img src={tecnicosSvg} alt="icone de lista"/>
                 <h2>Técnicos</h2></ButtonNave>
-                <ButtonNave selected={location.pathname === "/"} onClick={() => {navigate("/")}}><img src={clientesSvg} alt="icone de lista"/>
+                <ButtonNave selected={location.pathname === "/admin/customers"} onClick={() => {navigate("/admin/customers")}}><img src={clientesSvg} alt="icone de lista"/>
                 <h2>Clientes</h2></ButtonNave>
                 <ButtonNave selected={location.pathname === "/"} onClick={() => {navigate("/")}}><img src={servicosSvcg} alt="icone de lista"/>
                 <h2>Serviços</h2></ButtonNave>
