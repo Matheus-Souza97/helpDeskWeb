@@ -7,6 +7,7 @@ import { NewSupport } from "../pages/NewSupport"
 import { Confirm } from "../components/Confirm"
 import { AdminUpdateSupport } from "../pages/AdminUpdateSupport"
 import { AdminCustomers } from "../pages/AdminCustomers"
+import { AdminCustomerUpdate } from "../pages/AdminCustomerUpdate"
 export function AdminRoutes(){
   return(
     <Routes>
@@ -17,6 +18,7 @@ export function AdminRoutes(){
         <Route path="/admin/supports/new" element={<NewSupport/>}/>
         <Route path="/admin/support/:id" element={<AdminUpdateSupport/>}/>
         <Route path="/admin/customers" element={<AdminCustomers/>}/>
+        <Route path="/admin/customer/:id" element={<AdminCustomerUpdate/>}/>
         <Route path="/admin/confirm" element={<Confirm/>}/>
 
       </Route>
