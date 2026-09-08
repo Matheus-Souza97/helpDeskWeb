@@ -37,6 +37,16 @@ export function AdminCustomers(){
       
     }
   }
+
+  function customerInitials(name: string) {
+
+  const parts = name.trim().split(" ")
+
+  const firstLetter = parts[0]?.[0] ?? ""
+  const secondLetter = parts[1]?.[0] ?? ""
+
+  return `${firstLetter}${secondLetter}`.toUpperCase()
+}
   
   return(
     <div>
@@ -55,7 +65,7 @@ export function AdminCustomers(){
           <div key={customer.id} className="flex items-center px-3 border-t border-gray-500 py-5">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-8 h-8 p-1.5 rounded-full bg-blue-dark">
-                <p className="font-semibold text-gray-600">MS</p>
+                <p className="font-semibold text-gray-600">{customerInitials(customer.name)}</p>
               </div>
               <p className="w-183 font-semibold ">{customer.name}</p>
             </div>
@@ -65,7 +75,7 @@ export function AdminCustomers(){
                 <img src={lixeiraSvg} alt="lixo" className="w-4 h-4"/>
               </button>
               <ButtonEdit id={customer.id} image={editarSvg} onClick={() => setCustomerSelected(customer.id)}></ButtonEdit>
-              {customerSelected && (<AdminCustomerUpdate id={customer.id} onClose={() => setCustomerSelected(null)}/>)}
+              {customerSelected && (<AdminCustomerUpdate id={customerSelected} onClose={() => setCustomerSelected(null)}/>)}
             </div>
           </div>
         ))}
