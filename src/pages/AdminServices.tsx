@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import iconSumBrancoSvg from "../assets/icon_sum-branco.svg"
-import { Link } from "react-router"
+import { NewService } from "./NewService"
 import { api } from "../services/api"
 import desativarSvg from "../assets/desativar.svg"
 import reativarSvg from "../assets/reativar.svg"
@@ -9,6 +9,7 @@ import editarSvg from "../assets/editar.svg"
 
 
 export function AdminServices(){
+  const [newService, setNewService] = useState("closed")
   
   type Service = {
     amount: number
@@ -106,16 +107,18 @@ export function AdminServices(){
       )
     }
   }
+
+
   return(
     <div>
       <div className="flex justify-between mx-12 mt-14 mb-3.5">
         <h1 className="text-2xl font-semibold text-blue-dark">Serviços</h1>
-        <Link to={"/admin/supports/new"} className="flex items-center w-24 bg-gray-200 rounded-md">
-          <div className="flex items-center w-30 h-10 gap-1.5 px-2.5">
+        <button className="flex items-center w-24 bg-gray-200 rounded-md cursor-pointer" >
+          <div className="flex items-center w-30 h-10 gap-1.5 px-2.5" onClick={() => setNewService("open")}>
             <img src={iconSumBrancoSvg} alt="icone de Novo" />
             <p className="text-gray-600 font-semibold">Novo</p>
           </div>
-        </Link>
+        </button>
       </div>
 
       <div className="mx-12 border border-gray-500 rounded-[10px]">
@@ -139,6 +142,10 @@ export function AdminServices(){
           </div>
         ))}
       </div>
+
+      {newService === "open" && (
+        <NewService onClose={() => setNewService("closed")}/>
+      )}
 
     </div>
   )

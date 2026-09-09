@@ -9,6 +9,7 @@ import { AdminUpdateSupport } from "../pages/AdminUpdateSupport"
 import { AdminCustomers } from "../pages/AdminCustomers"
 import { AdminCustomerUpdate } from "../pages/AdminCustomerUpdate"
 import { AdminServices } from "../pages/AdminServices"
+import { NewService } from "../pages/NewService"
 export function AdminRoutes(){
   return(
     <Routes>
@@ -21,6 +22,7 @@ export function AdminRoutes(){
         <Route path="/admin/customers" element={<AdminCustomers/>}/>
         <Route path="/admin/customer/:id" element={<AdminCustomerUpdate/>}/>
         <Route path="/admin/services" element={<AdminServices/>}/>
+        <Route path="/admin/service/new" element={<NewService/>}/>
         <Route path="/admin/confirm" element={<Confirm/>}/>
 
       </Route>
